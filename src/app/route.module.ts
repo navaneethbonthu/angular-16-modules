@@ -1,19 +1,28 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router'; 
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { canActivate } from './RouteGuards/authGuard';
 
-const routes: Routes = [ 
-    { path: '', component: HomeComponent }, 
-    { path: 'login', component: LoginComponent }, 
-    { path: 'dashboard', component: DashboardComponent, canActivate: [canActivate] },  
-  ]; 
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  // {
+  //   path: 'dashboard',
+  //   loadChildren: () =>
+  //     import('./dashboard/dashboard.module').then((mod) => mod.DashboardModule),
+  // },
+  // {
+  //   path: 'login',
+  //   loadChildren: () =>
+  //     import('./login/auth.module').then((mod) => mod.AuthModule),
+  // },
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)], 
-  exports: [RouterModule], 
-  providers: []
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+  ],
+  exports: [RouterModule],
+  providers: [],
 })
-export class RouteModule { }
+export class RouteModule {}
