@@ -9,6 +9,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { RouteModule } from '../route.module';
 import { RouterModule } from '@angular/router';
 import { StatsComponent } from './stats/stats.component';
+import { DashboardRouteModule } from './dashboard.route';
 
 @NgModule({
   declarations: [
@@ -18,12 +19,19 @@ import { StatsComponent } from './stats/stats.component';
     OverviewComponent,
     StatsComponent,
   ],
-  imports: [CommonModule, SharedModule, RouteModule, RouterModule],
-  exports: [
-    DashboardComponent,
-    CreateTaskComponent,
-    TaskDetailsComponent,
+  imports: [
+    CommonModule,
     SharedModule,
+    RouteModule,
+    RouterModule,
+    DashboardRouteModule,
+  ],
+  exports: [
+    // DashboardComponent,
+    // CreateTaskComponent,
+    // TaskDetailsComponent,
+    SharedModule,
+    DashboardRouteModule,
   ],
 })
 export class DashboardModule {}
